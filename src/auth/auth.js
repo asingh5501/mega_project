@@ -31,7 +31,7 @@ export class AuthService {
         }
     }
 
-    async getCurrentUser(){
+    async getCurrentUser() {
         try {
             return this.account.get()
         } catch (error) {
@@ -39,7 +39,7 @@ export class AuthService {
         }
     }
 
-    async logout(){
+    async logout() {
         try {
             return this.account.deleteSessions('current');
         } catch (error) {
