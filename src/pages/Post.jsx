@@ -8,9 +8,11 @@ import { useSelector } from "react-redux";
 export default function Post() {
     const [post, setPost] = useState(null);
     const { slug } = useParams();
+    console.log(slug,'slug is called.........')
     const navigate = useNavigate();
 
     const userData = useSelector((state) => state.auth.userData);
+    console.log(userData,post,'usedata and post is called.......')
 
     const isAuthor = post && userData ? post.userId === userData.$id : false;
 
@@ -37,7 +39,7 @@ export default function Post() {
             <Container>
                 <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
                     <img
-                        src={appwriteService.getFilePreview(post.featuredImage)}
+                        src={appwriteService.getFilePreview(post.featuredimage)}
                         alt={post.title}
                         className="rounded-xl"
                     />
@@ -60,7 +62,7 @@ export default function Post() {
                 </div>
                 <div className="browser-css">
                     {parse(post.content)}
-                    </div>
+                </div>
             </Container>
         </div>
     ) : null;

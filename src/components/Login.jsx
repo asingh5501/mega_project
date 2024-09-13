@@ -65,7 +65,7 @@ function Login() {
                             })}
                         />
 
-                        <Button type='submit' className='w-full hover:bg-gray-300'>Sign in</Button>
+                        <Button type='submit' className='w-full hover:bg-blue-400 bg-gray-300'>Sign in</Button>
 
                     </div>
                 </form>

@@ -41,7 +41,7 @@ function Signup() {
                     <div className='space-y-5'>
                         <Input
                             label="Full Name"
-                            placeHolder="Enter your full name"
+                            placeholder="Enter your full name"
                             {...register('name', {
                                 required: true
                             })}
@@ -68,7 +68,7 @@ function Signup() {
                             })}
                         />
 
-                        <Button type='submit' className='w-full hover:bg-blue-400'>Create Account</Button>
+                        <Button type='submit' className='w-full hover:bg-blue-400 bg-gray-300'>Create Account</Button>
                     </div>
                 </form>
             </div>

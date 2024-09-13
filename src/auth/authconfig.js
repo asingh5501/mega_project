@@ -11,18 +11,18 @@ export class authConfig {
         this.bucket = new Storage(this.client);
     }
 
-    async createPost({ title, slug, content, featuredimage, status, userId }) {
+    async createPost({ title, content, featuredimage, status, userid }) {
         try {
             return await this.databases.createDocument(
                 config.appwriteDatabaseId,
                 config.appwriteCollectionId,
-                slug,
+                ID.unique(),
                 {
                     title,
                     content,
                     featuredimage,
                     status,
-                    userId
+                    userid
                 }
             )
         } catch (error) {
@@ -103,6 +103,7 @@ export class authConfig {
         }
     }
 
+    // File Delete Services
     async deleteFile(fileId){
         try {
             await this.bucket.deleteFile(

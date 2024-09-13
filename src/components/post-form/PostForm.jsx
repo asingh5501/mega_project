@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 
 function PostForm({ post }) {
     const navigate = useNavigate()
-    const userData = useSelector(state => state.userData)
+    const userData = useSelector(state => state.auth.userData)
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
         defaultValues: {
             title: post?.title || '',
@@ -33,10 +33,11 @@ function PostForm({ post }) {
             const file = await authService.uploadFile(data.image[0])
             if (file) {
                 const fileId = file.$id
-                data.featuredImage = fileId
+                data.featuredimage = fileId
+                data.content = 'Hello how are you'
                 const dbPost = await authService.createPost({
                     ...data,
-                    userId: userData.$id
+                    userid: userData.$id
                 })
                 if (dbPost) {
                     navigate(`/post/${dbPost.$id}`)
@@ -84,7 +85,7 @@ function PostForm({ post }) {
                     label="Slug: "
                     placeholder='Slug'
                     className='mb-4'
-                    {...register("Slug", {
+                    {...register("slug", {
                         required: true
                     })}
                     onInput={(e) => {
