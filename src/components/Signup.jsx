@@ -68,7 +68,7 @@ function Signup() {
                             })}
                         />
 
-                        <Button type='submit' className='w-full'>Create Account</Button>
+                        <Button type='submit' className='w-full hover:bg-blue-400'>Create Account</Button>
                     </div>
                 </form>
             </div>

@@ -1,10 +1,12 @@
+import React from 'react'
 import config from "../config/config";
 import { Client, Account, ID } from "appwrite";
 
-export class AuthService {
+export class AuthService extends React.Component {
     client = new Client()
     account;
     constructor() {
+        super();
         this.client.setEndpoint(config.appwriteUrl).setProject(config.appwriteProjectId);
         this.account = new Account(this.client);
     }

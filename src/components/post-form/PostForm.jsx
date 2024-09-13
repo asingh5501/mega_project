@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { Button, Input, RTE, Select } from '../index'
 import authService from '../../auth/authconfig'
@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 
 function PostForm({ post }) {
     const navigate = useNavigate()
-    const userData = useSelector(state => state.user.userData)
+    const userData = useSelector(state => state.userData)
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
         defaultValues: {
             title: post?.title || '',
@@ -24,7 +24,7 @@ function PostForm({ post }) {
             }
             const dbPost = await authService.updatePost(post.$id, {
                 ...data,
-                featuredimage: file ? file?.$id : undefined,
+                featuredimage: file ? file?.$id : '',
             })
             if (dbPost) {
                 navigate(`/post/${dbPost.$id}`)
@@ -88,16 +88,11 @@ function PostForm({ post }) {
                         required: true
                     })}
                     onInput={(e) => {
-                        setValue('slug', slugTrasform(e.currentTarget.value),{shouldValidate: true})
+                        setValue('slug', slugTrasform(e.currentTarget.value), { shouldValidate: true })
                     }}
                 />
 
-                <RTE
-                    label='Content :'
-                    name="content"
-                    control={control}
-                    defaultValue={getValues("content")}
-                />
+                <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
             </div>
             <dir className='w-1/3'>
                 <Input
@@ -125,10 +120,10 @@ function PostForm({ post }) {
                     })}
                 />
 
-                <Button 
+                <Button
                     type='submit'
-                    bgColor={post ? 'bg-green-500' : undefined}
-                    className='w-full'
+                    bgColor={post ? 'bg-green-500' : ''}
+                    className='w-full hover:bg-blue-300 bg-gray-600'
                 >{post ? 'Update' : 'Submit'}</Button>
 
             </dir>
