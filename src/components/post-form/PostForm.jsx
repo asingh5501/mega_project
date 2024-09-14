@@ -20,7 +20,7 @@ function PostForm({ post }) {
         if (post) {
             const file = data.image[0] ? authService.uploadFile(data.image[0]) : null
             if (file) {
-                authService.deleteFile(post.featuredImage)
+                authService.deleteFile(post.featuredimage)
             }
             const dbPost = await authService.updatePost(post.$id, {
                 ...data,
@@ -68,7 +68,6 @@ function PostForm({ post }) {
         }
     }, [watch, slugTrasform, setValue])
 
-
     return (
         <form onSubmit={handleSubmit(submit)} className='flex flex-wrap'>
             <div className='w-2/3 px-2'>
@@ -108,13 +107,13 @@ function PostForm({ post }) {
 
                 {post && (
                     <div>
-                        <img src={authService.getFilePreview(post.featuredImage)} alt="post image" className='rounded-lg' />
+                        <img src={authService.getFilePreview(post.featuredimage)} alt="post image" className='rounded-lg' />
                     </div>
                 )}
 
                 <Select
                     options={['active', 'inactive']}
-                    label={'Status'}
+                    label={'Status :'}
                     className='mb-4'
                     {...register('status', {
                         required: true
