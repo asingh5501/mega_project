@@ -34,7 +34,7 @@ function PostForm({ post }) {
             if (file) {
                 const fileId = file.$id
                 data.featuredimage = fileId
-                data.content = 'Hello how are you'
+                data.content = 'Critically analyze the words you use to make sure you deliver on your promise. For example'
                 const dbPost = await authService.createPost({
                     ...data,
                     userid: userData.$id

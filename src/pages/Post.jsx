@@ -8,22 +8,26 @@ import { useSelector } from "react-redux";
 export default function Post() {
     const [post, setPost] = useState(null);
     const { slug } = useParams();
-    console.log(slug,'slug is called.........')
     const navigate = useNavigate();
 
     const userData = useSelector((state) => state.auth.userData);
-    console.log(userData,post,'usedata and post is called.......')
 
     const isAuthor = post && userData ? post.userId === userData.$id : false;
+
 
     useEffect(() => {
         if (slug) {
             appwriteService.getPost(slug).then((post) => {
-                if (post) setPost(post);
-                else navigate("/");
+                if (post) {
+                    setPost(post);
+                } else {
+                    navigate("/");
+                }
             });
-        } else navigate("/");
-    }, [slug, navigate]);
+        } else {
+            navigate("/");
+        }
+    }, [slug]);
 
     const deletePost = () => {
         appwriteService.deletePost(post.$id).then((status) => {

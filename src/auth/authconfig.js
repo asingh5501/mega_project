@@ -48,7 +48,7 @@ export class authConfig {
         }
     }
 
-    async deletePost(slug){
+    async deletePost(slug) {
         try {
             await this.databases.deleteDocument(
                 config.appwriteDatabaseId,
@@ -62,21 +62,20 @@ export class authConfig {
         }
     }
 
-    async getPost(slug){
+    async getPost(slug) {
         try {
             return await this.databases.getDocument(
                 config.appwriteDatabaseId,
                 config.appwriteCollectionId,
                 slug
             )
-            
         } catch (error) {
             console.log("Appwrite service :: get Post :: error", error);
             return false
         }
     }
 
-    async getPosts(queries = [Query.equal("status","active")]){
+    async getPosts(queries = [Query.equal("status", "active")]) {
         try {
             return await this.databases.listDocuments(
                 config.appwriteDatabaseId,
@@ -90,7 +89,7 @@ export class authConfig {
     }
 
     // File Upload services
-    async uploadFile(file){
+    async uploadFile(file) {
         try {
             return await this.bucket.createFile(
                 config.appwriteBucketId,
@@ -104,7 +103,7 @@ export class authConfig {
     }
 
     // File Delete Services
-    async deleteFile(fileId){
+    async deleteFile(fileId) {
         try {
             await this.bucket.deleteFile(
                 config.appwriteBucketId,
@@ -117,7 +116,7 @@ export class authConfig {
         }
     }
 
-    getFilePreview(fileId){
+    getFilePreview(fileId) {
         return this.bucket.getFilePreview(
             config.appwriteBucketId,
             fileId
